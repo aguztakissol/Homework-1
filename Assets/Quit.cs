@@ -1,19 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class QuitKey : MonoBehaviour
+public class Quit: MonoBehaviour
 {
     public InputActionReference action;
+
     void Start()
     {
+        
         action.action.Enable();
         action.action.performed += (ctx) =>
         {
-#if Unity_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#else
+          #if UNITY_EDITOR
+              UnityEditor.EditorApplication.isPlaying = false;
+          #else
             Application.Quit();
-#endif
+          #endif
         };
     }
 }
